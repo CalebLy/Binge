@@ -20,6 +20,7 @@ match with others who share similar tastes, creating a fun, social way to explor
   - [Milestone 9: Frontend Integration](#milestone-9-frontend-integration)
   - [Milestone 10: Notifications & Optional Real-Time Features](#milestone-10-notifications--optional-real-time-features)
 - [Git Basics](#git-basics)
+- [Database Basics](#database-basics)
 
 ---
 
@@ -67,7 +68,7 @@ Key skills and concepts explored:
 - [x] Initialize Node.js + TypeScript project
 - [x] Configure ESLint + Prettier
 - [x] Set up Express server and folder structure
-- [ ] Configure PostgreSQL + Prisma ORM
+- [x] Configure PostgreSQL + Prisma ORM
 - [ ] Add `/api/health` route
 - [ ] Test endpoints locally with Postman or Thunder Client
 
@@ -306,3 +307,84 @@ model Friend {
   After, you have to do git push --force.
   Note, HEAD1 is just a way to move the pointer from the HEAD back 1. You can also do HEAD2 if u want to reset 2 commits for example.
   Or you can even do git log and find the specific commit hash to move your pointer to
+
+
+
+
+### Database basics
+
+1. Docker — PostgreSQL container management: 
+
+docker ps
+- Lists running containers
+
+docker ps -a
+- Lists all containers, even stopped ones
+
+docker stop mydbcontainer
+- Stops the running PostgreSQL container
+
+docker rm mydbcontainer
+- Deletes the container (use if you don’t need the data)
+
+docker volume create mydbvolume
+- Creates a Docker-managed volume for persistent database storage
+
+docker run --name mydbcontainer -e POSTGRES_USER=caleb -e POSTGRES_PASSWORD=supersecret -e POSTGRES_DB=Binge -p 5432:5432 -v mydbvolume:/var/lib/postgresql/data -d postgres
+- Creates a new PostgreSQL container with a Docker volume
+- Replace `mydbcontainer` with your container name, and adjust user/password/db name
+
+docker run --name mydbcontainer -e POSTGRES_USER=caleb -e POSTGRES_PASSWORD=supersecret -e POSTGRES_DB=Binge -p 5432:5432 -v /full/path/on/your/computer:/var/lib/postgresql/data -d postgres
+- Creates a PostgreSQL container with a bind mount to a folder on your system
+- PostgreSQL data will live at the folder path you specify
+
+docker exec -it mydbcontainer psql -U caleb -d Binge
+- Opens a psql shell to directly query your database inside the container
+
+--------------------------------------------------------
+
+2. Prisma — database schema and migrations (Yarn):
+
+yarn prisma init
+- Creates `prisma/schema.prisma` and `.env` for DB connection
+
+yarn prisma migrate dev --name descriptive_migration_name
+- Applies changes in schema.prisma to the database
+- Creates a new folder in prisma/migrations/ for this migration
+
+yarn prisma generate
+- Updates the auto-generated client for querying the database in code
+
+yarn prisma db pull
+- Pulls the current database schema into prisma/schema.prisma
+- Useful if tables exist but schema.prisma is empty
+
+yarn prisma migrate reset
+- Drops all data, reapplies all migrations
+- Useful for starting fresh during development
+
+yarn prisma studio
+- Opens a browser GUI to view & edit tables
+- Only shows tables that exist in the database
+
+yarn prisma db connect
+- Tests that DATABASE_URL works and DB is reachable
+
+yarn prisma db seed
+- Populates tables with initial data for development
+
+yarn prisma migrate status
+- Shows which migrations have been applied and pending
+
+--------------------------------------------------------
+
+3. Notes / Tips
+
+- Container name (`--name`) → only used for Docker commands
+- Database user/password (`POSTGRES_USER` / `POSTGRES_PASSWORD`) → for connecting Prisma and psql
+- Migration name (`--name`) → descriptive label for your schema change, appears in `prisma/migrations/`
+- Studio only shows existing tables — if empty, run a migration first
+- You rarely need to use psql after Prisma Studio is working — Studio + Prisma Client covers most dev workflows
+
+
+
