@@ -4,8 +4,8 @@
 If you struggle to decide where to eat or don’t want to try new restaurants alone, Binge lets you swipe on restaurants and even
 match with others who share similar tastes, creating a fun, social way to explore the best dining spots in Metro Vancouver.
 
-
 ## Table of Contents
+
 - [Tech Stack](#-tech-stack)
 - [Project Goals](#-project-goals)
 - [Roadmap](#-roadmap)
@@ -20,7 +20,6 @@ match with others who share similar tastes, creating a fun, social way to explor
   - [Milestone 9: Frontend Integration](#milestone-9-frontend-integration)
   - [Milestone 10: Notifications & Optional Real-Time Features](#milestone-10-notifications--optional-real-time-features)
 - [Git Basics](#git-basics)
-
 
 ---
 
@@ -67,7 +66,7 @@ Key skills and concepts explored:
 
 - [x] Initialize Node.js + TypeScript project
 - [x] Configure ESLint + Prettier
-- [ ] Set up Express server and folder structure
+- [x] Set up Express server and folder structure
 - [ ] Configure PostgreSQL + Prisma ORM
 - [ ] Add `/api/health` route
 - [ ] Test endpoints locally with Postman or Thunder Client
@@ -254,55 +253,56 @@ model Friend {
 
 **Learning Goals:** Real-time updates, event-driven backend, push notifications
 
+## Git basics:
 
-## Git basics: 
 1. Initial Project Setup
+
 - git init
 - git remote add origin <your-repo-url>
-- git pull origin main      # Sync local repo with remote main
+- git pull origin main # Sync local repo with remote main
 
 2. Create and Switch to Dev Branch (optional but recommended)
-- git checkout -b dev       # Create & switch to dev branch
-- git push origin dev       # Push dev branch to remote
 
+- git checkout -b dev # Create & switch to dev branch
+- git push origin dev # Push dev branch to remote
 
 3. Create a Feature Branch
-- git checkout dev                        # Make sure you're on dev
-- git checkout -b feature/<feature-name>    # Create feature branch
 
+- git checkout dev # Make sure you're on dev
+- git checkout -b feature/<feature-name> # Create feature branch
 
 4. Work on the Feature
-# After making changes:
+   After making changes:
+
 - git add .
 - git commit -m "Add <feature-name> feature"
 - git push origin feature/<feature-name>
 
-
 5. Merge Feature into Dev
-# Once the feature is ready:
+   Once the feature is ready:
+
 - git checkout dev
 - git pull origin dev
 - git merge feature/<feature-name>
 - git push origin dev
 
-
 6. Merge Dev into Main (when stable)
+
 - git checkout main
 - git pull origin main
 - git merge dev
 - git push origin main
 
-
 7. Delete Feature Branch (Optional Cleanup)
-- git branch -d feature/<feature-name>        # Delete locally
-- git push origin --delete feature/<feature-name>  # Delete remotely
 
+- git branch -d feature/<feature-name> # Delete locally
+- git push origin --delete feature/<feature-name> # Delete remotely
 
 8. (EXTRA) Undoing commits
-- git reset --soft HEAD~1       # HEAD1 moves back one commit. soft undoes the commit but keeps all changes staged (git add xyz)
-- git reset --mixed HEAD~1      # Does the same as soft but unstages the changes
-- git reset --hard HEAD~1       # Discards the commit and the changes.
-Note, HEAD1 is just a way to move the pointer from the HEAD back 1. You can also do HEAD2 if u want to reset 2 commits for example. 
-Or you can even do git log and find the specific commit hash to move your pointer to
 
-
+- git reset --soft HEAD~1 # HEAD1 moves back one commit. soft undoes the commit but keeps all changes staged (git add xyz)
+- git reset --mixed HEAD~1 # Does the same as soft but unstages the changes
+- git reset --hard HEAD~1 # Discards the commit and the changes.
+  After, you have to do git push --force.
+  Note, HEAD1 is just a way to move the pointer from the HEAD back 1. You can also do HEAD2 if u want to reset 2 commits for example.
+  Or you can even do git log and find the specific commit hash to move your pointer to
