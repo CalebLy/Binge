@@ -69,7 +69,7 @@ Key skills and concepts explored:
 - [x] Configure ESLint + Prettier
 - [x] Set up Express server and folder structure
 - [x] Configure PostgreSQL + Prisma ORM
-- [ ] Add `/api/health` route
+- [x] Add `/api/health` route
 - [ ] Test endpoints locally with Postman or Thunder Client
 
 **Learning Goals:** REST API basics, environment variables, relational database connection
