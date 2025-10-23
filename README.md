@@ -70,7 +70,7 @@ Key skills and concepts explored:
 - [x] Set up Express server and folder structure
 - [x] Configure PostgreSQL + Prisma ORM
 - [x] Add `/api/health` route
-- [ ] Test endpoints locally with Postman or Thunder Client
+- [x] Test endpoints locally with Postman or Thunder Client
 
 **Learning Goals:** REST API basics, environment variables, relational database connection
 
@@ -78,7 +78,8 @@ Key skills and concepts explored:
 
 ### **Milestone 2: Authentication & User Management (Week 3–4)**
 
-- [ ] Define `User` model in Prisma (name, email, passwordHash, preferences)
+- [x] Define `User` model in Prisma (name, email, passwordHash, preferences)
+    - Eventually, change autoincremented id -> uuid
 - [ ] Add routes:
   - `POST /api/auth/register`
   - `POST /api/auth/login`
